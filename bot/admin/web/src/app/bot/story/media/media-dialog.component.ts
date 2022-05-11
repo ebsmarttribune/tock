@@ -63,11 +63,17 @@ export class MediaDialogComponent implements OnInit {
       ).label;
     }
 
+    if (this.media.descriptionTitle) {
+      this.media.descTitleLabel = this.media.descriptionTitle.defaultLocalizedLabelForLocale(
+        this.state.currentLocale
+      ).label;
+    }
+
     this.media.actions.forEach(
       (a) => (a.titleLabel = a.title.defaultLocalizedLabelForLocale(this.state.currentLocale).label)
     );
 
-    this.uploader = new FileUploader({ removeAfterUpload: true, autoUpload: true });
+    this.uploader = new FileUploader({removeAfterUpload: true, autoUpload: true});
     this.uploader.onCompleteItem = (
       item: FileItem,
       response: string,

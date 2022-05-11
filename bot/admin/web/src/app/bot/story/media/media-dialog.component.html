@@ -57,14 +57,25 @@
             nbTooltip="Card Subtitle"
           />
         </span>
-
+        <!--- Description -->
+        <span class="nb-form-field inline">
+          <label>Card Description</label>
+          <input
+            nbInput
+            name="description"
+            placeholder="description"
+            [(ngModel)]="media.descTitleLabel"
+            class="width-50"
+            nbTooltip="Card Description"
+          />
+        </span>
         <!-- File -->
         <p *ngIf="media.file">
           File:
           <a
             href="{{ media.file.url(rest.url) }}"
             target="_blank"
-            >{{ media.file.name }}</a
+          >{{ media.file.name }}</a
           >
           <img
             *ngIf="media.file.isImage()"

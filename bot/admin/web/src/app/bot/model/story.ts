@@ -690,6 +690,7 @@ export class MediaCard extends Media {
     public actions: MediaAction[],
     public title?: I18nLabel,
     public subTitle?: I18nLabel,
+    public descriptionTitle?: I18nLabel,
     public file?: MediaFile,
     public fillCarousel?: boolean
   ) {
@@ -698,12 +699,14 @@ export class MediaCard extends Media {
 
   public titleLabel: string;
   public subTitleLabel: string;
+  public descTitleLabel: string;
 
   static fromJSON(json: any): MediaCard {
     const value = Object.create(MediaCard.prototype);
     const result = Object.assign(value, json, {
       title: json.title ? I18nLabel.fromJSON(json.title) : null,
       subTitle: json.subTitle ? I18nLabel.fromJSON(json.subTitle) : null,
+      descTitle: json.descTitle ? I18nLabel.fromJSON(json.descTitle) : null,
       actions: MediaAction.fromJSONArray(json.actions),
       file: MediaFile.fromJSON(json.file),
       type: MediaType.card
@@ -716,6 +719,7 @@ export class MediaCard extends Media {
       this.actions.map((a) => a.clone()),
       this.title ? this.title.clone() : null,
       this.subTitle ? this.subTitle.clone() : null,
+      this.descriptionTitle ? this.descriptionTitle.clone() : null,
       this.file,
       this.fillCarousel
     );
