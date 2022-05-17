@@ -19,6 +19,7 @@ package ai.tock.bot.admin.story.dump
 import ai.tock.bot.connector.media.MediaCardDescriptor
 import ai.tock.bot.connector.media.MediaMessageType
 import ai.tock.bot.connector.media.MediaMessageType.card
+import ai.tock.translator.I18nLabel
 import ai.tock.translator.I18nLabelValue
 
 /**
@@ -27,6 +28,7 @@ import ai.tock.translator.I18nLabelValue
 data class MediaCardDescriptorDump(
     val title: I18nLabelValue?,
     val subTitle: I18nLabelValue?,
+    val descriptionTitle: I18nLabelValue?,
     val file: MediaFileDescriptorDump?,
     val actions: List<MediaActionDescriptorDump> = emptyList()
 ) : MediaMessageDescriptorDump {
@@ -36,6 +38,7 @@ data class MediaCardDescriptorDump(
     constructor(media: MediaCardDescriptor) : this(
         media.title,
         media.subTitle,
+        media.descriptionTitle,
         media.file?.let { MediaFileDescriptorDump(it) },
         media.actions.map { MediaActionDescriptorDump(it) }
     )
@@ -44,6 +47,7 @@ data class MediaCardDescriptorDump(
         MediaCardDescriptor(
             title?.withNamespace(controller.targetNamespace),
             subTitle?.withNamespace(controller.targetNamespace),
+            descriptionTitle?.withNamespace(controller.targetNamespace),
             file?.toFile(controller),
             actions.map { it.toMedia(controller) }
         )

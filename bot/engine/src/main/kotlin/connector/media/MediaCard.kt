@@ -17,6 +17,7 @@
 package ai.tock.bot.connector.media
 
 import ai.tock.bot.engine.message.GenericMessage
+import ai.tock.bot.engine.message.GenericMessage.Companion.DESCRIPTION_PARAM
 import ai.tock.bot.engine.message.GenericMessage.Companion.SUBTITLE_PARAM
 import ai.tock.bot.engine.message.GenericMessage.Companion.TITLE_PARAM
 import ai.tock.shared.mapNotNullValues
@@ -27,18 +28,21 @@ import ai.tock.shared.mapNotNullValues
 data class MediaCard(
     val title: CharSequence?,
     val subTitle: CharSequence?,
+    val descriptionTitle: CharSequence?,
     val file: MediaFile?,
     val actions: List<MediaAction> = emptyList()
 ) : MediaMessage {
 
-    override fun checkValidity(): Boolean = title != null || subTitle != null || file != null
+    override fun checkValidity(): Boolean =
+        title != null || subTitle != null || descriptionTitle != null || file != null
 
     override fun toGenericMessage(): GenericMessage? =
         GenericMessage(
             choices = actions.map { it.toChoice() },
             texts = mapNotNullValues(
                 TITLE_PARAM to title?.toString(),
-                SUBTITLE_PARAM to subTitle?.toString()
+                SUBTITLE_PARAM to subTitle?.toString(),
+                DESCRIPTION_PARAM to descriptionTitle?.toString()
             ),
             attachments = listOfNotNull(file?.toAttachment())
         )

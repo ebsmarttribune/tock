@@ -27,6 +27,7 @@ import ai.tock.translator.Translator
 data class BotMediaCardDescriptor(
     val title: I18nLabel?,
     val subTitle: I18nLabel?,
+    val descriptionTitle: I18nLabel?,
     val file: MediaFileDescriptor?,
     val actions: List<BotMediaActionDescriptor> = emptyList(),
     val fillCarousel: Boolean = false
@@ -36,6 +37,7 @@ data class BotMediaCardDescriptor(
         this(
             desc.title?.let { Translator.saveIfNotExist(it, readOnly) },
             desc.subTitle?.let { Translator.saveIfNotExist(it, readOnly) },
+            desc.descriptionTitle?.let { Translator.saveIfNotExist(it, readOnly) },
             desc.file,
             desc.actions.map { BotMediaActionDescriptor(it, readOnly) },
             desc.fillCarousel
@@ -47,6 +49,7 @@ data class BotMediaCardDescriptor(
         MediaCardDescriptor(
             title?.let { I18nLabelValue(it) },
             subTitle?.let { I18nLabelValue(it) },
+            descriptionTitle?.let { I18nLabelValue(it) },
             file,
             actions.map { it.toDescriptor() },
             fillCarousel

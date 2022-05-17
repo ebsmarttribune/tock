@@ -611,6 +611,9 @@ export class SimpleAnswerConfiguration extends AnswerConfiguration {
           bot.duplicateLabel(clonedMediaMessage.subTitle, (i18n) => {
             clonedMediaMessage.subTitle = i18n;
           });
+          bot.duplicateLabel(clonedMediaMessage.descriptionTitle, (i18n) => {
+            clonedMediaMessage.descriptionTitle = i18n;
+          });
           clonedMediaMessage.actions.forEach((action) => {
             bot.duplicateLabel(action.title, (i18n) => {
               action.title = i18n;

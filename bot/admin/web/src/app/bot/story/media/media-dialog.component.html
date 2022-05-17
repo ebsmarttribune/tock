@@ -57,18 +57,7 @@
             nbTooltip="Card Subtitle"
           />
         </span>
-        <!--- Description -->
-        <span class="nb-form-field inline">
-          <label>Card Description</label>
-          <input
-            nbInput
-            name="description"
-            placeholder="description"
-            [(ngModel)]="media.descTitleLabel"
-            class="width-50"
-            nbTooltip="Card Description"
-          />
-        </span>
+
         <!-- File -->
         <p *ngIf="media.file">
           File:
@@ -135,8 +124,19 @@
             />
           </span>
         </p>
-
-        <hr />
+        <!--- Description -->
+        <span class="nb-form-field inline">
+          <label>Image Description</label>
+          <input
+            nbInput
+            name="description"
+            placeholder="description"
+            [(ngModel)]="media.descTitleLabel"
+            class="width-50"
+            nbTooltip="Image Description"
+          />
+        </span>
+        <hr/>
         <!-- actions -->
         <div class="actions">
           <h6>Actions</h6>

@@ -18,6 +18,7 @@ package ai.tock.bot.connector.media
 
 import ai.tock.bot.connector.media.MediaMessageType.card
 import ai.tock.bot.engine.BotBus
+import ai.tock.translator.I18nLabel
 import ai.tock.translator.I18nLabelValue
 
 /**
@@ -26,6 +27,7 @@ import ai.tock.translator.I18nLabelValue
 data class MediaCardDescriptor(
     val title: I18nLabelValue?,
     val subTitle: I18nLabelValue?,
+    val descriptionTitle: I18nLabelValue?,
     val file: MediaFileDescriptor?,
     val actions: List<MediaActionDescriptor> = emptyList(),
     val fillCarousel: Boolean = false
@@ -37,6 +39,7 @@ data class MediaCardDescriptor(
         MediaCard(
             bus.translate(title).takeUnless { it.isBlank() },
             bus.translate(subTitle).takeUnless { it.isBlank() },
+            bus.translate(descriptionTitle).takeUnless { it.isBlank() },
             file?.toMessage(bus),
             actions.map { it.toMessage(bus) }
         )

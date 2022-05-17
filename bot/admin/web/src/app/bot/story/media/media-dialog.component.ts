@@ -51,7 +51,7 @@ export class MediaDialogComponent implements OnInit {
   ngOnInit(): void {
     this.category = this.category ? this.category : 'build';
     this.create = this.media === null;
-    this.media = this.media ? this.media : new MediaCard([], null, null, null, true);
+    this.media = this.media ? this.media : new MediaCard([], null, null, null, null, true);
     if (this.media.title) {
       this.media.titleLabel = this.media.title.defaultLocalizedLabelForLocale(
         this.state.currentLocale
@@ -62,7 +62,6 @@ export class MediaDialogComponent implements OnInit {
         this.state.currentLocale
       ).label;
     }
-
     if (this.media.descriptionTitle) {
       this.media.descTitleLabel = this.media.descriptionTitle.defaultLocalizedLabelForLocale(
         this.state.currentLocale
@@ -93,6 +92,10 @@ export class MediaDialogComponent implements OnInit {
 
   private isSubtitle() {
     return this.media.subTitleLabel && this.media.subTitleLabel.trim().length !== 0;
+  }
+
+  private isDescriptiontitle() {
+    return this.media.descTitleLabel && this.media.descTitleLabel.trim().length !== 0;
   }
 
   private isFile() {
@@ -179,6 +182,34 @@ export class MediaDialogComponent implements OnInit {
         this.media.subTitle = null;
       }
 
+
+      if (this.isDescriptiontitle()) {
+        if (this.media.descriptionTitle) {
+          this.bot
+            .saveI18nLabel(
+              this.media.descriptionTitle.changeDefaultLabelForLocale(
+                this.state.currentLocale,
+                this.media.descTitleLabel.trim()
+              )
+            )
+            .subscribe((_) => {
+            });
+        } else {
+          this.bot
+            .createI18nLabel(
+              new CreateI18nLabelRequest(
+                this.category,
+                this.media.descTitleLabel.trim(),
+                this.state.currentLocale
+              )
+            )
+            .subscribe((i18n) => (this.media.descriptionTitle = i18n));
+        }
+      } else {
+        this.media.descriptionTitle = null;
+      }
+
+
       this.media.actions = this.media.actions
         .filter((a) => a.titleLabel && a.titleLabel.trim().length !== 0)
         .map((a) => {
@@ -187,7 +218,8 @@ export class MediaDialogComponent implements OnInit {
               .saveI18nLabel(
                 a.title.changeDefaultLabelForLocale(this.state.currentLocale, a.titleLabel.trim())
               )
-              .subscribe((_) => {});
+              .subscribe((_) => {
+              });
           } else {
             this.bot
               .createI18nLabel(

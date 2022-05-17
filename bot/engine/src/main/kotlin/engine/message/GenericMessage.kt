@@ -48,6 +48,11 @@ data class GenericMessage(
         const val SUBTITLE_PARAM = "subtitle"
 
         /**
+         * A [texts] parameter for subtitle.
+         */
+        const val DESCRIPTION_PARAM = "description"
+
+        /**
          * A [texts] parameter for text content.
          */
         const val TEXT_PARAM = "text"

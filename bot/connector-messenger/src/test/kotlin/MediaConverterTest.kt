@@ -50,6 +50,7 @@ class MediaConverterTest {
         val mediaCard = MediaCard(
             "title",
             "subtitle",
+            "description File",
             MediaFile("https://a/image.png", "image"),
             listOf(MediaAction("Test"))
         )

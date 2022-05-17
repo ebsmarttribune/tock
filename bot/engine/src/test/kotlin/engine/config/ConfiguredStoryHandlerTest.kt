@@ -142,8 +142,8 @@ class ConfiguredStoryHandlerTest {
             defaultLabel = "Not translated label",
             i18n = LinkedHashSet()
         )
-        val media1 = MediaCardDescriptor(I18nLabelValue(originalLabel), null, null)
-        val media2 = MediaCardDescriptor(I18nLabelValue(originalLabel), null, null)
+        val media1 = MediaCardDescriptor(I18nLabelValue(originalLabel), null, null, null)
+        val media2 = MediaCardDescriptor(I18nLabelValue(originalLabel), null, null, null)
         val simpleAnswerConfiguration = SimpleAnswerConfiguration(
             answers = listOf(
                 SimpleAnswer(
@@ -241,7 +241,7 @@ class ConfiguredStoryHandlerTest {
                 SimpleAnswer(
                     key = I18nLabelValue(label0Card),
                     delay = -1,
-                    mediaMessage = MediaCardDescriptor(I18nLabelValue(label0Card), null, null)
+                    mediaMessage = MediaCardDescriptor(I18nLabelValue(label0Card), null, null, null)
                 ),
                 SimpleAnswer(
                     key = I18nLabelValue(label1Text),
@@ -250,17 +250,35 @@ class ConfiguredStoryHandlerTest {
                 SimpleAnswer(
                     key = I18nLabelValue(label2Card),
                     delay = -1,
-                    mediaMessage = MediaCardDescriptor(I18nLabelValue(label2Card), null, null, fillCarousel = true)
+                    mediaMessage = MediaCardDescriptor(
+                        I18nLabelValue(label2Card),
+                        null,
+                        null,
+                        null,
+                        fillCarousel = true
+                    )
                 ),
                 SimpleAnswer(
                     key = I18nLabelValue(label3Card),
                     delay = -1,
-                    mediaMessage = MediaCardDescriptor(I18nLabelValue(label3Card), null, null, fillCarousel = true)
+                    mediaMessage = MediaCardDescriptor(
+                        I18nLabelValue(label3Card),
+                        null,
+                        null,
+                        null,
+                        fillCarousel = true
+                    )
                 ),
                 SimpleAnswer(
                     key = I18nLabelValue(label4Card),
                     delay = -1,
-                    mediaMessage = MediaCardDescriptor(I18nLabelValue(label4Card), null, null, fillCarousel = true)
+                    mediaMessage = MediaCardDescriptor(
+                        I18nLabelValue(label4Card),
+                        null,
+                        null,
+                        null,
+                        fillCarousel = true
+                    )
                 ),
                 SimpleAnswer(
                     key = I18nLabelValue(label5Text),
@@ -273,12 +291,24 @@ class ConfiguredStoryHandlerTest {
                 SimpleAnswer(
                     key = I18nLabelValue(label7Card),
                     delay = -1,
-                    mediaMessage = MediaCardDescriptor(I18nLabelValue(label7Card), null, null, fillCarousel = true)
+                    mediaMessage = MediaCardDescriptor(
+                        I18nLabelValue(label7Card),
+                        null,
+                        null,
+                        null,
+                        fillCarousel = true
+                    )
                 ),
                 SimpleAnswer(
                     key = I18nLabelValue(label8Card),
                     delay = -1,
-                    mediaMessage = MediaCardDescriptor(I18nLabelValue(label8Card), null, null, fillCarousel = true)
+                    mediaMessage = MediaCardDescriptor(
+                        I18nLabelValue(label8Card),
+                        null,
+                        null,
+                        null,
+                        fillCarousel = true
+                    )
                 )
             )
         )

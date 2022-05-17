@@ -32,6 +32,7 @@ class BotMediaMessageSerializationTest {
             null,
             null,
             null,
+            null,
             listOf(
                 BotMediaActionDescriptor(
                     I18nLabel(
