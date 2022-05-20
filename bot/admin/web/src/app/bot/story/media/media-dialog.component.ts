@@ -181,10 +181,16 @@ export class MediaDialogComponent implements OnInit {
       } else {
         this.media.subTitle = null;
       }
-
+      console.log("=================");
+      console.log(this.isDescriptiontitle());
+      console.log("=================");
 
       if (this.isDescriptiontitle()) {
         if (this.media.descriptionTitle) {
+          console.log("dans le save description Title");
+          console.log("valeur");
+          console.log(this.media.descTitleLabel.trim());
+
           this.bot
             .saveI18nLabel(
               this.media.descriptionTitle.changeDefaultLabelForLocale(
@@ -195,6 +201,9 @@ export class MediaDialogComponent implements OnInit {
             .subscribe((_) => {
             });
         } else {
+          console.log("dans le create  description Title");
+          console.log("valeur");
+          console.log(this.media.descTitleLabel.trim());
           this.bot
             .createI18nLabel(
               new CreateI18nLabelRequest(
